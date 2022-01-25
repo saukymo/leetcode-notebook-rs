@@ -1,0 +1,168 @@
+<!doctype html><html lang=zh-hans dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="101. Symmetric Tree #  题目 #  Given a binary tree, check whether it is a mirror of itself (ie, symmetric around its center).
+For example, this binary tree [1,2,2,3,4,4,3] is symmetric:
+ 1 / \ 2 2 / \ / \ 3 4 4 3 But the following [1,2,2,null,3,null,3] is not:
+ 1 / \ 2 2 \ \ 3 3 代码 #  use std::rc::Rc; use std::cell::RefCell; impl Solution { pub fn is_symmetric(root: Option<Rc<RefCell<TreeNode>>>) -> bool { let root = root.">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="0101.Symmetric Tree">
+<meta property="og:description" content="101. Symmetric Tree #  题目 #  Given a binary tree, check whether it is a mirror of itself (ie, symmetric around its center).
+For example, this binary tree [1,2,2,3,4,4,3] is symmetric:
+ 1 / \ 2 2 / \ / \ 3 4 4 3 But the following [1,2,2,null,3,null,3] is not:
+ 1 / \ 2 2 \ \ 3 3 代码 #  use std::rc::Rc; use std::cell::RefCell; impl Solution { pub fn is_symmetric(root: Option<Rc<RefCell<TreeNode>>>) -> bool { let root = root.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="//blog.mkdef.com/leetcode-notebook-rs/0100~0199/0101.symmetric-tree/"><meta property="article:section" content="0100~0199">
+<title>0101.Symmetric Tree | LeetCode NoteBook</title>
+<link rel=manifest href=../../manifest.json>
+<link rel=icon href=../../favicon.png type=image/x-icon>
+<link rel=stylesheet href=../../book.min.97cfda4f5e3c9fa49a2bf8d401f4ddc0eec576c99cdcf6afbec19173200c37db.css integrity="sha256-l8/aT148n6SaK/jUAfTdwO7Fdsmc3PavvsGRcyAMN9s=" crossorigin=anonymous>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=../../><span>LeetCode NoteBook</span>
+</a>
+</h2>
+<ul>
+<li>
+<a href=//blog.mkdef.com/leetcode-notebook-rs/preface/>序</a>
+</li>
+<li>
+<span>0001~0099s</span>
+<ul>
+<li>
+<a href=//blog.mkdef.com/leetcode-notebook-rs/0001~0099/0001.two-sum/>0001.Two Sum</a>
+</li>
+</ul>
+</li>
+<li>
+<span>0100~0199s</span>
+<ul>
+<li>
+<a href=//blog.mkdef.com/leetcode-notebook-rs/0100~0199/0101.symmetric-tree/ class=active>0101.Symmetric Tree</a>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=../../svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>0101.Symmetric Tree</strong>
+<label for=toc-control>
+<img src=../../svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#题目>题目</a></li>
+<li><a href=#代码>代码</a></li>
+</ul>
+</nav>
+</aside>
+</header>
+<article class=markdown><h1 id=101-symmetric-treehttpsleetcodecomproblemssymmetric-tree>
+<a href=https://leetcode.com/problems/symmetric-tree/>101. Symmetric Tree</a>
+<a class=anchor href=#101-symmetric-treehttpsleetcodecomproblemssymmetric-tree>#</a>
+</h1>
+<h2 id=题目>
+题目
+<a class=anchor href=#%e9%a2%98%e7%9b%ae>#</a>
+</h2>
+<p>Given a binary tree, check whether it is a mirror of itself (ie, symmetric around its center).</p>
+<p>For example, this binary tree [1,2,2,3,4,4,3] is symmetric:</p>
+<pre tabindex=0><code>
+    1
+   / \
+  2   2
+ / \ / \
+3  4 4  3
+
+</code></pre><p>But the following [1,2,2,null,3,null,3] is not:</p>
+<pre tabindex=0><code>
+    1
+   / \
+  2   2
+   \   \
+   3    3
+
+</code></pre><h2 id=代码>
+代码
+<a class=anchor href=#%e4%bb%a3%e7%a0%81>#</a>
+</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-Rust data-lang=Rust><span style=color:#66d9ef>use</span> std::rc::Rc;
+<span style=color:#66d9ef>use</span> std::cell::RefCell;
+<span style=color:#66d9ef>impl</span> Solution {
+    <span style=color:#66d9ef>pub</span> <span style=color:#66d9ef>fn</span> <span style=color:#a6e22e>is_symmetric</span>(root: Option<span style=color:#f92672>&lt;</span>Rc<span style=color:#f92672>&lt;</span>RefCell<span style=color:#f92672>&lt;</span>TreeNode<span style=color:#f92672>&gt;&gt;&gt;</span>) -&gt; <span style=color:#66d9ef>bool</span> {
+
+        <span style=color:#66d9ef>let</span> root <span style=color:#f92672>=</span> root.unwrap();
+        <span style=color:#66d9ef>let</span> root_ref <span style=color:#f92672>=</span> root.borrow_mut();
+
+        <span style=color:#66d9ef>return</span> Self::is_subtree_symmetric(root_ref.left.clone(), root_ref.right.clone());
+    }
+
+    <span style=color:#66d9ef>fn</span> <span style=color:#a6e22e>is_subtree_symmetric</span>(left: Option<span style=color:#f92672>&lt;</span>Rc<span style=color:#f92672>&lt;</span>RefCell<span style=color:#f92672>&lt;</span>TreeNode<span style=color:#f92672>&gt;&gt;&gt;</span>, right: Option<span style=color:#f92672>&lt;</span>Rc<span style=color:#f92672>&lt;</span>RefCell<span style=color:#f92672>&lt;</span>TreeNode<span style=color:#f92672>&gt;&gt;&gt;</span>) -&gt; <span style=color:#66d9ef>bool</span> {
+        <span style=color:#66d9ef>if</span> left <span style=color:#f92672>==</span> None <span style=color:#f92672>&amp;&amp;</span> right <span style=color:#f92672>==</span> None {
+            <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>true</span>;
+        }
+        
+        <span style=color:#66d9ef>if</span> left <span style=color:#f92672>==</span> None <span style=color:#f92672>||</span> right <span style=color:#f92672>==</span> None {
+            <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>false</span>;
+        }
+        
+        <span style=color:#66d9ef>let</span> left <span style=color:#f92672>=</span> left.unwrap();
+        <span style=color:#66d9ef>let</span> right <span style=color:#f92672>=</span> right.unwrap();
+
+        <span style=color:#66d9ef>let</span> left_ref <span style=color:#f92672>=</span> left.borrow_mut();
+        <span style=color:#66d9ef>let</span> right_ref <span style=color:#f92672>=</span> right.borrow_mut();
+    
+    
+        <span style=color:#66d9ef>if</span> (left_ref.right <span style=color:#f92672>==</span> None <span style=color:#f92672>&amp;&amp;</span> right_ref.left <span style=color:#f92672>!=</span> None) <span style=color:#f92672>||</span> (left_ref.right <span style=color:#f92672>!=</span> None <span style=color:#f92672>&amp;&amp;</span> right_ref.left <span style=color:#f92672>==</span> None) {
+            <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>false</span>;
+        }
+    
+        <span style=color:#66d9ef>if</span> (left_ref.left <span style=color:#f92672>==</span> None <span style=color:#f92672>&amp;&amp;</span> right_ref.right <span style=color:#f92672>!=</span> None) <span style=color:#f92672>||</span> (left_ref.left <span style=color:#f92672>!=</span> None <span style=color:#f92672>&amp;&amp;</span> right_ref.right <span style=color:#f92672>==</span> None) {
+            <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>false</span>;
+        }
+    
+        <span style=color:#66d9ef>return</span> (left_ref.val <span style=color:#f92672>==</span> right_ref.val) <span style=color:#f92672>&amp;&amp;</span> (Self::is_subtree_symmetric(left_ref.left.clone(), right_ref.right.clone())) <span style=color:#f92672>&amp;&amp;</span> (Self::is_subtree_symmetric(left_ref.right.clone(), right_ref.left.clone()));
+    }
+    
+}
+</code></pre></div></article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#题目>题目</a></li>
+<li><a href=#代码>代码</a></li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</body>
+</html>

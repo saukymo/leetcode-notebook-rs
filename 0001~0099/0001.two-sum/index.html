@@ -1,0 +1,141 @@
+<!doctype html><html lang=zh-hans dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="1. Two Sum #  题目 #  Given an array of integers, return indices of the two numbers such that they add up to a specific target.
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+Example:
+ Given nums = [2, 7, 11, 15], target = 9, Because nums[0] + nums[1] = 2 + 7 = 9, return [0, 1] 代码 #  use std::collections::HashMap; impl Solution { pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> { let mut numbers: HashMap<i32, i32> = HashMap::new(); for (idx, value) in nums.">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="0001.Two Sum">
+<meta property="og:description" content="1. Two Sum #  题目 #  Given an array of integers, return indices of the two numbers such that they add up to a specific target.
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+Example:
+ Given nums = [2, 7, 11, 15], target = 9, Because nums[0] + nums[1] = 2 + 7 = 9, return [0, 1] 代码 #  use std::collections::HashMap; impl Solution { pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> { let mut numbers: HashMap<i32, i32> = HashMap::new(); for (idx, value) in nums.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="//blog.mkdef.com/leetcode-notebook-rs/0001~0099/0001.two-sum/"><meta property="article:section" content="0001~0099">
+<title>0001.Two Sum | LeetCode NoteBook</title>
+<link rel=manifest href=../../manifest.json>
+<link rel=icon href=../../favicon.png type=image/x-icon>
+<link rel=stylesheet href=../../book.min.97cfda4f5e3c9fa49a2bf8d401f4ddc0eec576c99cdcf6afbec19173200c37db.css integrity="sha256-l8/aT148n6SaK/jUAfTdwO7Fdsmc3PavvsGRcyAMN9s=" crossorigin=anonymous>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=../../><span>LeetCode NoteBook</span>
+</a>
+</h2>
+<ul>
+<li>
+<a href=//blog.mkdef.com/leetcode-notebook-rs/preface/>序</a>
+</li>
+<li>
+<span>0001~0099s</span>
+<ul>
+<li>
+<a href=//blog.mkdef.com/leetcode-notebook-rs/0001~0099/0001.two-sum/ class=active>0001.Two Sum</a>
+</li>
+</ul>
+</li>
+<li>
+<span>0100~0199s</span>
+<ul>
+<li>
+<a href=//blog.mkdef.com/leetcode-notebook-rs/0100~0199/0101.symmetric-tree/>0101.Symmetric Tree</a>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=../../svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>0001.Two Sum</strong>
+<label for=toc-control>
+<img src=../../svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#题目>题目</a></li>
+<li><a href=#代码>代码</a></li>
+</ul>
+</nav>
+</aside>
+</header>
+<article class=markdown><h1 id=1-two-sumhttpsleetcodecomproblemstwo-sum>
+<a href=https://leetcode.com/problems/two-sum/>1. Two Sum</a>
+<a class=anchor href=#1-two-sumhttpsleetcodecomproblemstwo-sum>#</a>
+</h1>
+<h2 id=题目>
+题目
+<a class=anchor href=#%e9%a2%98%e7%9b%ae>#</a>
+</h2>
+<p>Given an array of integers, return indices of the two numbers such that they add up to a specific target.</p>
+<p>You may assume that each input would have exactly one solution, and you may not use the same element twice.</p>
+<p><strong>Example</strong>:</p>
+<pre tabindex=0><code>
+Given nums = [2, 7, 11, 15], target = 9,
+
+Because nums[0] + nums[1] = 2 + 7 = 9,
+return [0, 1]
+
+</code></pre><h2 id=代码>
+代码
+<a class=anchor href=#%e4%bb%a3%e7%a0%81>#</a>
+</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-Rust data-lang=Rust><span style=color:#66d9ef>use</span> std::collections::HashMap;
+
+<span style=color:#66d9ef>impl</span> Solution {
+    <span style=color:#66d9ef>pub</span> <span style=color:#66d9ef>fn</span> <span style=color:#a6e22e>two_sum</span>(nums: Vec<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>i32</span><span style=color:#f92672>&gt;</span>, target: <span style=color:#66d9ef>i32</span>) -&gt; Vec<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>i32</span><span style=color:#f92672>&gt;</span> {
+        <span style=color:#66d9ef>let</span> <span style=color:#66d9ef>mut</span> numbers: <span style=color:#a6e22e>HashMap</span><span style=color:#f92672>&lt;</span><span style=color:#66d9ef>i32</span>, <span style=color:#66d9ef>i32</span><span style=color:#f92672>&gt;</span> <span style=color:#f92672>=</span> HashMap::new();
+
+        <span style=color:#66d9ef>for</span> (idx, value) <span style=color:#66d9ef>in</span> nums.iter().enumerate() {
+            <span style=color:#66d9ef>match</span> numbers.get(<span style=color:#f92672>&amp;</span>(target <span style=color:#f92672>-</span> value)) {
+                Some(pre_idx) <span style=color:#f92672>=&gt;</span> {
+                    <span style=color:#66d9ef>return</span> vec![<span style=color:#66d9ef>i32</span>::from(<span style=color:#f92672>*</span>pre_idx), idx <span style=color:#66d9ef>as</span> <span style=color:#66d9ef>i32</span>];
+                },
+                None <span style=color:#f92672>=&gt;</span> {
+                    numbers.insert(<span style=color:#66d9ef>i32</span>::from(<span style=color:#f92672>*</span>value), idx <span style=color:#66d9ef>as</span> <span style=color:#66d9ef>i32</span>);
+                }
+            }
+        }
+
+        <span style=color:#66d9ef>return</span> vec![];
+    }
+}
+</code></pre></div></article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#题目>题目</a></li>
+<li><a href=#代码>代码</a></li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</body>
+</html>

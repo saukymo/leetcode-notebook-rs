@@ -1,6 +1,6 @@
 {
-  "name": "LeetCode NoteBook in Rust",
-  "short_name": "LeetCode NoteBook in Rust",
+  "name": "LeetCode NoteBook",
+  "short_name": "LeetCode NoteBook",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
