@@ -17,7 +17,13 @@ disablePathToLower = true
 
 [markup.tableOfContents]
   startLevel = 1
-  
+
+[menu]
+[[menu.before]]
+  name = "Code"
+  url = "https://github.com/saukymo/leetcode-rs"
+  weight = 10
+
 [params]
   # (Optional, default light) Sets color theme: light, dark or auto.
   # Theme 'auto' switches between dark and light modes based on browser/os preferences
