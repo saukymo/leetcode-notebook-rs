@@ -1,4 +1,4 @@
-baseURL = 'blog.mkdef.com/leetcode-notebook-rs/'
+baseURL = '//blog.mkdef.com/leetcode-notebook-rs/'
 languageCode = 'en-us'
 title = 'My New Hugo Site'
 theme = "hugo-book"
