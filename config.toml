@@ -1,6 +1,6 @@
 baseURL = '//blog.mkdef.com/leetcode-notebook-rs/'
-languageCode = 'en-us'
-title = 'My New Hugo Site'
+languageCode = 'zh-hans'
+title = 'LeetCode NoteBook in Rust'
 theme = "hugo-book"
 
 # https://github.com/gohugoio/hugo/issues/7182
