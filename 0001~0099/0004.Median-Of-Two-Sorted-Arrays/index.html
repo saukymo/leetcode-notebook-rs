@@ -1,0 +1,293 @@
+<!doctype html><html lang=zh-hans dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="4. Median Of Two Sorted Arrays #  题目 #  Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays.
+The overall run time complexity should be O(log(m+n)).
+Example 1:
+Input: nums1 = [1,3], nums2 = [2] Output: 2.00000 Explanation: merged array = [1,2,3] and median is 2. Example 2:
+Input: nums1 = [1,2], nums2 = [3,4] Output: 2.">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="0004.Median Of Two Sorted Arrays">
+<meta property="og:description" content="4. Median Of Two Sorted Arrays #  题目 #  Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays.
+The overall run time complexity should be O(log(m+n)).
+Example 1:
+Input: nums1 = [1,3], nums2 = [2] Output: 2.00000 Explanation: merged array = [1,2,3] and median is 2. Example 2:
+Input: nums1 = [1,2], nums2 = [3,4] Output: 2.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="//blog.mkdef.com/leetcode-notebook-rs/0001~0099/0004.Median-Of-Two-Sorted-Arrays/"><meta property="article:section" content="0001~0099">
+<title>0004.Median Of Two Sorted Arrays | LeetCode NoteBook</title>
+<link rel=manifest href=../../manifest.json>
+<link rel=icon href=../../favicon.png type=image/x-icon>
+<link rel=stylesheet href=../../book.min.97cfda4f5e3c9fa49a2bf8d401f4ddc0eec576c99cdcf6afbec19173200c37db.css integrity="sha256-l8/aT148n6SaK/jUAfTdwO7Fdsmc3PavvsGRcyAMN9s=" crossorigin=anonymous>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=../../><span>LeetCode NoteBook</span>
+</a>
+</h2>
+<ul>
+<li>
+<a href=https://github.com/saukymo/leetcode-rs target=_blank rel=noopener>
+Code
+</a>
+</li>
+</ul>
+<ul>
+<li>
+<span>0001~0099s</span>
+<ul>
+<li>
+<a href=//blog.mkdef.com/leetcode-notebook-rs/0001~0099/0001.Two-Sum/>0001.Two Sum</a>
+</li>
+<li>
+<a href=//blog.mkdef.com/leetcode-notebook-rs/0001~0099/0004.Median-Of-Two-Sorted-Arrays/ class=active>0004.Median Of Two Sorted Arrays</a>
+</li>
+</ul>
+</li>
+<li>
+<span>0100~0199s</span>
+<ul>
+<li>
+<a href=//blog.mkdef.com/leetcode-notebook-rs/0100~0199/0101.Symmetric-Tree/>0101.Symmetric Tree</a>
+</li>
+</ul>
+</li>
+<li>
+<span>0200~0299s</span>
+<ul>
+<li>
+<a href=//blog.mkdef.com/leetcode-notebook-rs/0200~0299/0202.Happy-Number/>0202.Happy Number</a>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=../../svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>0004.Median Of Two Sorted Arrays</strong>
+<label for=toc-control>
+<img src=../../svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#4-median-of-two-sorted-arrayshttpsleetcodecomproblemsmedian-of-two-sorted-arrays><a href=https://leetcode.com/problems/median-of-two-sorted-arrays/>4. Median Of Two Sorted Arrays</a></a>
+<ul>
+<li><a href=#题目>题目</a></li>
+<li><a href=#思路>思路</a>
+<ul>
+<li></li>
+</ul>
+</li>
+<li><a href=#代码>代码</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+</header>
+<article class=markdown><h1 id=4-median-of-two-sorted-arrayshttpsleetcodecomproblemsmedian-of-two-sorted-arrays>
+<a href=https://leetcode.com/problems/median-of-two-sorted-arrays/>4. Median Of Two Sorted Arrays</a>
+<a class=anchor href=#4-median-of-two-sorted-arrayshttpsleetcodecomproblemsmedian-of-two-sorted-arrays>#</a>
+</h1>
+<h2 id=题目>
+题目
+<a class=anchor href=#%e9%a2%98%e7%9b%ae>#</a>
+</h2>
+<p>Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays.</p>
+<p>The overall run time complexity should be <code>O(log(m+n))</code>.</p>
+<p><strong>Example 1:</strong></p>
+<pre tabindex=0><code>Input: nums1 = [1,3], nums2 = [2]
+Output: 2.00000
+Explanation: merged array = [1,2,3] and median is 2.
+</code></pre><p><strong>Example 2:</strong></p>
+<pre tabindex=0><code>Input: nums1 = [1,2], nums2 = [3,4]
+Output: 2.50000
+Explanation: merged array = [1,2,3,4] and median is (2 + 3) / 2 = 2.5.
+</code></pre><p><strong>Constraints:</strong></p>
+<pre tabindex=0><code>nums1.length == m
+nums2.length == n
+0 &lt;= m &lt;= 1000
+0 &lt;= n &lt;= 1000
+1 &lt;= m + n &lt;= 2000
+-106 &lt;= nums1[i], nums2[i] &lt;= 106
+</code></pre><h2 id=思路>
+思路
+<a class=anchor href=#%e6%80%9d%e8%b7%af>#</a>
+</h2>
+<h4 id=朴素做法>
+朴素做法
+<a class=anchor href=#%e6%9c%b4%e7%b4%a0%e5%81%9a%e6%b3%95>#</a>
+</h4>
+<p>这道题的朴素做法自然是合并两个有序数组，然后计算中位数，不过这样时间复杂度就达到了<code>O(m+n)</code>，不符合题目要求，那么自然地就会考虑二分法。</p>
+<p>二分需要满足两个条件，单调和唯一。那么如何把题目转换成符合二分的形式呢？</p>
+<h4 id=中位数到数组划分>
+中位数到数组划分
+<a class=anchor href=#%e4%b8%ad%e4%bd%8d%e6%95%b0%e5%88%b0%e6%95%b0%e7%bb%84%e5%88%92%e5%88%86>#</a>
+</h4>
+<p>假设我们已经将两个数组合并成了一个有序数组，那么我们考虑一个划分，将整个数组从中间分开划分为大小两个部分，保证小的部分的个数满足<code>⌊(m + n) / 2⌋</code>。</p>
+<p><img src=../../static/divide_to_median.png alt=divide></p>
+<p>通过这个划分，我们可以很快得到中位数的计算：</p>
+<ul>
+<li>如果总数是奇数，那么中位数就是大的部分中最小值；</li>
+<li>如果总数是偶数，那么中位数就是小的部分中最大值和大的部分中最小值的平均值；</li>
+</ul>
+<p>这里我们可以看到，奇数偶数的影响已经被放到了最后一步，前面我们可以统一地考虑如何找到这个划分。</p>
+<h4 id=整体划分到单个数组的划分>
+整体划分到单个数组的划分
+<a class=anchor href=#%e6%95%b4%e4%bd%93%e5%88%92%e5%88%86%e5%88%b0%e5%8d%95%e4%b8%aa%e6%95%b0%e7%bb%84%e7%9a%84%e5%88%92%e5%88%86>#</a>
+</h4>
+<p>首先，我们需要将这个划分，从一个合并数组的划分转换为两个单独有序数组的两个划分。这里我们考虑小的部分。</p>
+<p>小的部分里的元素可能来源于两个数据，或者nums1，或者nums2，将他们按来源分开成两个部分，就能对应上原来两个数据两个划分。同时，最关键的是：</p>
+<p>如果nums1的划分确定了，nums2的划分也可以唯一确定，因为两个部分的元素数量是固定的。</p>
+<p><img src=../../static/one_to_two.png alt=one_to_two></p>
+<p>所以问题就转换成了，在nums1里找到一个划分，计算nums2里对应的划分，看是否满足：nums1和nums2小的部分的元素都小于等于大的部分的元素。</p>
+<h4 id=二分查找>
+二分查找
+<a class=anchor href=#%e4%ba%8c%e5%88%86%e6%9f%a5%e6%89%be>#</a>
+</h4>
+<p>这个划分是单调的吗？显然是的。随着划分从小的位置往大的位置移动，小的部分里的元素逐渐增多，直到等于需要的<code>⌊(m + n) / 2⌋</code>，且一定有解且唯一。</p>
+<p>那么二分时如何检验一个划分是否合理，以及往哪个方向调整呢？</p>
+<p><img src=../../static/smaller_than_expect.png alt=smaller_than_expected></p>
+<p>为了方便讨论，我们用实线表示最终需要的划分，用虚线表示二分法待检查的划分，记为实线1，实线2，虚线1，虚线2。</p>
+<p>同时，记实线前最大元素为s，实线后最小元素为t，虚线前最大元素为a，虚线后最大元素为b，对应两个数组，我们有，s1, t1, s2, t2, a1, b1, a2, b2满足：</p>
+<pre tabindex=0><code>1. s1 &lt;= t1
+2. s2 &lt;= t2
+3. s1 &lt;= t2
+4. s2 &lt;= t1
+5. a1 &lt;= b1
+6. a2 &lt;= b2
+</code></pre><p>其中，3和4是因为实线将数组分为了大小两个部分，左边的元素都小于等于实线右边的元素。所以，如果这个划分是准确的，那么a1 = s1, b1 = t1, a2 = s2, b2 = t2, 那么我们应该有：</p>
+<pre tabindex=0><code>1. a1 &lt;= b2
+2. a2 &lt;= b1
+</code></pre><p>如果虚线1的位置偏小(<code>a1 &lt;= b1 &lt;= s1 &lt;= t1</code>)，因为划分的元素个数固定，则导致虚线2的位置偏大(<code>s2 &lt;= t2 &lt;= a2 &lt;= b2</code>)，那么会导致：</p>
+<pre tabindex=0><code>b1 &lt;= s1 &lt;= t2 &lt;= a2
+</code></pre><p><img src=../../static/bigger_than_expect.png alt=bigger_than_expected></p>
+<p>同理，如果虚线1的位置偏大(<code>s1 &lt;= t1 &lt;= a1 &lt;= b1</code>)，因为划分的元素个数固定，则导致虚线2的位置偏小(<code>a2 &lt;= b2 &lt;= s2 &lt;= t2</code>)，那么会导致：</p>
+<pre tabindex=0><code>b2 &lt;= s2 &lt;= t1 &lt;= a1
+</code></pre><p>注意，这里可能同时出现 b1 &lt;= a2, b2 &lt;= a1吗？不可能，因为：</p>
+<pre tabindex=0><code>b1 &gt;= a1 &gt;= b2 &gt;= a2 矛盾
+</code></pre><p>至此，我们得出了一个通过二分法找到目标划分的方式，通过最开始提到的转换，即可算出两个有序数组的中位数。</p>
+<p>注意，我们可以二分查找元素数目较少的数组划分，一来可以减少查找次数，二来如果查找元素数目较多的数组划分，通过计算得到两一个数组的划分可能是不合法的。</p>
+<h2 id=代码>
+代码
+<a class=anchor href=#%e4%bb%a3%e7%a0%81>#</a>
+</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-Rust data-lang=Rust><span style=color:#66d9ef>use</span> std::cmp;
+<span style=color:#66d9ef>impl</span> Solution {
+    <span style=color:#66d9ef>pub</span> <span style=color:#66d9ef>fn</span> <span style=color:#a6e22e>find_median_sorted_arrays</span>(nums1: Vec<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>i32</span><span style=color:#f92672>&gt;</span>, nums2: Vec<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>i32</span><span style=color:#f92672>&gt;</span>) -&gt; <span style=color:#66d9ef>f64</span> {
+        <span style=color:#66d9ef>if</span> nums1.len() <span style=color:#f92672>&lt;</span> nums2.len() {
+            Self::find_median_in_smaller_sorted_arrays(<span style=color:#f92672>&amp;</span>nums1, <span style=color:#f92672>&amp;</span>nums2)
+        } <span style=color:#66d9ef>else</span> {
+            Self::find_median_in_smaller_sorted_arrays(<span style=color:#f92672>&amp;</span>nums2, <span style=color:#f92672>&amp;</span>nums1)
+        }
+    }
+
+    <span style=color:#66d9ef>fn</span> <span style=color:#a6e22e>find_median_in_smaller_sorted_arrays</span>(nums1: <span style=color:#66d9ef>&amp;</span>Vec<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>i32</span><span style=color:#f92672>&gt;</span>, nums2: <span style=color:#66d9ef>&amp;</span>Vec<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>i32</span><span style=color:#f92672>&gt;</span>) -&gt; <span style=color:#66d9ef>f64</span> {
+        <span style=color:#66d9ef>let</span> n <span style=color:#f92672>=</span> nums1.len();
+        <span style=color:#66d9ef>let</span> m <span style=color:#f92672>=</span> nums2.len();
+
+        <span style=color:#66d9ef>let</span> total <span style=color:#f92672>=</span> n <span style=color:#f92672>+</span> m;
+        <span style=color:#66d9ef>let</span> lower_bound <span style=color:#f92672>=</span> total <span style=color:#f92672>/</span> <span style=color:#ae81ff>2</span>;
+
+        <span style=color:#75715e>// range in 0..n
+</span><span style=color:#75715e></span>        <span style=color:#66d9ef>let</span> <span style=color:#66d9ef>mut</span> l <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+        <span style=color:#66d9ef>let</span> <span style=color:#66d9ef>mut</span> r <span style=color:#f92672>=</span> n; 
+        <span style=color:#66d9ef>while</span> l <span style=color:#f92672>&lt;</span> r {
+            <span style=color:#66d9ef>let</span> m1 <span style=color:#f92672>=</span> (l <span style=color:#f92672>+</span> r ) <span style=color:#f92672>/</span> <span style=color:#ae81ff>2</span>;
+            <span style=color:#66d9ef>let</span> m2 <span style=color:#f92672>=</span> lower_bound <span style=color:#f92672>-</span> m1;
+
+            <span style=color:#66d9ef>if</span> m2 <span style=color:#f92672>&gt;</span> m <span style=color:#f92672>||</span> (m2 <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>&amp;&amp;</span> m1 <span style=color:#f92672>&lt;</span> n <span style=color:#f92672>&amp;&amp;</span> nums1[m1] <span style=color:#f92672>&lt;=</span> nums2[m2 <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>]) {
+                l <span style=color:#f92672>=</span> m1 <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>;
+            } <span style=color:#66d9ef>else</span> {
+                r <span style=color:#f92672>=</span> m1;
+            }
+        }
+
+        <span style=color:#66d9ef>let</span> m1 <span style=color:#f92672>=</span> l;
+        <span style=color:#66d9ef>let</span> m2 <span style=color:#f92672>=</span> lower_bound <span style=color:#f92672>-</span> m1;
+
+        <span style=color:#66d9ef>if</span> Self::is_odd(total) {
+            <span style=color:#66d9ef>return</span> Self::find_least(<span style=color:#f92672>&amp;</span>nums1, <span style=color:#f92672>&amp;</span>nums2, m1, m2) <span style=color:#66d9ef>as</span> <span style=color:#66d9ef>f64</span>;
+        } <span style=color:#66d9ef>else</span> {
+            <span style=color:#66d9ef>return</span> (Self::find_most(<span style=color:#f92672>&amp;</span>nums1, <span style=color:#f92672>&amp;</span>nums2, m1, m2) <span style=color:#f92672>+</span> Self::find_least(<span style=color:#f92672>&amp;</span>nums1, <span style=color:#f92672>&amp;</span>nums2, m1, m2)) <span style=color:#66d9ef>as</span> <span style=color:#66d9ef>f64</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>2.0</span>;
+        }
+    }
+
+    <span style=color:#66d9ef>fn</span> <span style=color:#a6e22e>is_odd</span>(len: <span style=color:#66d9ef>usize</span>) -&gt; <span style=color:#66d9ef>bool</span> {
+        <span style=color:#66d9ef>return</span> len<span style=color:#f92672>&amp;</span><span style=color:#ae81ff>1</span> <span style=color:#f92672>!=</span> <span style=color:#ae81ff>0</span>;
+    }
+
+    <span style=color:#66d9ef>fn</span> <span style=color:#a6e22e>find_least</span>(nums1: <span style=color:#66d9ef>&amp;</span>Vec<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>i32</span><span style=color:#f92672>&gt;</span>, nums2: <span style=color:#66d9ef>&amp;</span>Vec<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>i32</span><span style=color:#f92672>&gt;</span>, m1: <span style=color:#66d9ef>usize</span>, m2: <span style=color:#66d9ef>usize</span>) -&gt; <span style=color:#66d9ef>i32</span> {
+        <span style=color:#66d9ef>if</span> m1 <span style=color:#f92672>==</span> nums1.len() {
+            <span style=color:#66d9ef>return</span> nums2[m2];
+        }
+
+        <span style=color:#66d9ef>if</span> m2 <span style=color:#f92672>==</span> nums2.len() {
+            <span style=color:#66d9ef>return</span> nums1[m1];
+        }
+
+        <span style=color:#66d9ef>return</span> cmp::min(nums1[m1], nums2[m2]);
+    }
+
+    <span style=color:#66d9ef>fn</span> <span style=color:#a6e22e>find_most</span>(nums1: <span style=color:#66d9ef>&amp;</span>Vec<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>i32</span><span style=color:#f92672>&gt;</span>, nums2: <span style=color:#66d9ef>&amp;</span>Vec<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>i32</span><span style=color:#f92672>&gt;</span>, m1: <span style=color:#66d9ef>usize</span>, m2: <span style=color:#66d9ef>usize</span>) -&gt; <span style=color:#66d9ef>i32</span> {
+        <span style=color:#66d9ef>if</span> m1 <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span> {
+            <span style=color:#66d9ef>return</span> nums2[m2 <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>];
+        }
+
+        <span style=color:#66d9ef>if</span> m2 <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span> {
+            <span style=color:#66d9ef>return</span> nums1[m1 <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>];
+        }
+
+        <span style=color:#66d9ef>return</span> cmp::max(nums1[m1 <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>], nums2[m2 <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>]);
+    }
+
+
+}
+</code></pre></div></article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#4-median-of-two-sorted-arrayshttpsleetcodecomproblemsmedian-of-two-sorted-arrays><a href=https://leetcode.com/problems/median-of-two-sorted-arrays/>4. Median Of Two Sorted Arrays</a></a>
+<ul>
+<li><a href=#题目>题目</a></li>
+<li><a href=#思路>思路</a>
+<ul>
+<li></li>
+</ul>
+</li>
+<li><a href=#代码>代码</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</body>
+</html>
