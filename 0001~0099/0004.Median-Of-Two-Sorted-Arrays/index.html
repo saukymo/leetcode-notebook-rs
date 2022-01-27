@@ -95,6 +95,7 @@ Code
 </ul>
 </li>
 <li><a href=#代码>代码</a></li>
+<li><a href=#附录>附录</a></li>
 </ul>
 </li>
 </ul>
@@ -141,7 +142,7 @@ nums2.length == n
 <a class=anchor href=#%e4%b8%ad%e4%bd%8d%e6%95%b0%e5%88%b0%e6%95%b0%e7%bb%84%e5%88%92%e5%88%86>#</a>
 </h4>
 <p>假设我们已经将两个数组合并成了一个有序数组，那么我们考虑一个划分，将整个数组从中间分开划分为大小两个部分，保证小的部分的个数满足<code>⌊(m + n) / 2⌋</code>。</p>
-<p><img src=../../static/divide_to_median.png alt=divide></p>
+<p><img src=../../divide_to_median.png alt=divide></p>
 <p>通过这个划分，我们可以很快得到中位数的计算：</p>
 <ul>
 <li>如果总数是奇数，那么中位数就是大的部分中最小值；</li>
@@ -155,7 +156,7 @@ nums2.length == n
 <p>首先，我们需要将这个划分，从一个合并数组的划分转换为两个单独有序数组的两个划分。这里我们考虑小的部分。</p>
 <p>小的部分里的元素可能来源于两个数据，或者nums1，或者nums2，将他们按来源分开成两个部分，就能对应上原来两个数据两个划分。同时，最关键的是：</p>
 <p>如果nums1的划分确定了，nums2的划分也可以唯一确定，因为两个部分的元素数量是固定的。</p>
-<p><img src=../../static/one_to_two.png alt=one_to_two></p>
+<p><img src=../../one_to_two.png alt=one_to_two></p>
 <p>所以问题就转换成了，在nums1里找到一个划分，计算nums2里对应的划分，看是否满足：nums1和nums2小的部分的元素都小于等于大的部分的元素。</p>
 <h4 id=二分查找>
 二分查找
@@ -163,7 +164,7 @@ nums2.length == n
 </h4>
 <p>这个划分是单调的吗？显然是的。随着划分从小的位置往大的位置移动，小的部分里的元素逐渐增多，直到等于需要的<code>⌊(m + n) / 2⌋</code>，且一定有解且唯一。</p>
 <p>那么二分时如何检验一个划分是否合理，以及往哪个方向调整呢？</p>
-<p><img src=../../static/smaller_than_expect.png alt=smaller_than_expected></p>
+<p><img src=../../smaller_than_expect.png alt=smaller_than_expected></p>
 <p>为了方便讨论，我们用实线表示最终需要的划分，用虚线表示二分法待检查的划分，记为实线1，实线2，虚线1，虚线2。</p>
 <p>同时，记实线前最大元素为s，实线后最小元素为t，虚线前最大元素为a，虚线后最大元素为b，对应两个数组，我们有，s1, t1, s2, t2, a1, b1, a2, b2满足：</p>
 <pre tabindex=0><code>1. s1 &lt;= t1
@@ -172,15 +173,15 @@ nums2.length == n
 4. s2 &lt;= t1
 5. a1 &lt;= b1
 6. a2 &lt;= b2
-</code></pre><p>其中，3和4是因为实线将数组分为了大小两个部分，左边的元素都小于等于实线右边的元素。所以，如果这个划分是准确的，那么a1 = s1, b1 = t1, a2 = s2, b2 = t2, 那么我们应该有：</p>
+</code></pre><p>其中，3和4是因为实线将数组分为了大小两个部分，左边的元素都小于等于实线右边的元素。所以，如果这个划分是准确的，那么<code>a1 = s1</code>, <code>b1 = t1</code>, <code>a2 = s2</code>, <code>b2 = t2</code>, 那么我们应该有：</p>
 <pre tabindex=0><code>1. a1 &lt;= b2
 2. a2 &lt;= b1
 </code></pre><p>如果虚线1的位置偏小(<code>a1 &lt;= b1 &lt;= s1 &lt;= t1</code>)，因为划分的元素个数固定，则导致虚线2的位置偏大(<code>s2 &lt;= t2 &lt;= a2 &lt;= b2</code>)，那么会导致：</p>
 <pre tabindex=0><code>b1 &lt;= s1 &lt;= t2 &lt;= a2
-</code></pre><p><img src=../../static/bigger_than_expect.png alt=bigger_than_expected></p>
+</code></pre><p><img src=../../bigger_than_expect.png alt=bigger_than_expected></p>
 <p>同理，如果虚线1的位置偏大(<code>s1 &lt;= t1 &lt;= a1 &lt;= b1</code>)，因为划分的元素个数固定，则导致虚线2的位置偏小(<code>a2 &lt;= b2 &lt;= s2 &lt;= t2</code>)，那么会导致：</p>
 <pre tabindex=0><code>b2 &lt;= s2 &lt;= t1 &lt;= a1
-</code></pre><p>注意，这里可能同时出现 b1 &lt;= a2, b2 &lt;= a1吗？不可能，因为：</p>
+</code></pre><p>注意，这里可能同时出现 <code>b1 &lt;= a2</code>, <code>b2 &lt;= a1</code>吗？不可能，因为：</p>
 <pre tabindex=0><code>b1 &gt;= a1 &gt;= b2 &gt;= a2 矛盾
 </code></pre><p>至此，我们得出了一个通过二分法找到目标划分的方式，通过最开始提到的转换，即可算出两个有序数组的中位数。</p>
 <p>注意，我们可以二分查找元素数目较少的数组划分，一来可以减少查找次数，二来如果查找元素数目较多的数组划分，通过计算得到两一个数组的划分可能是不合法的。</p>
@@ -259,7 +260,12 @@ nums2.length == n
 
 
 }
-</code></pre></div></article>
+</code></pre></div><h2 id=附录>
+附录
+<a class=anchor href=#%e9%99%84%e5%bd%95>#</a>
+</h2>
+<p>图片是用<a href=https://excalidraw.com/>excalidraw</a>绘制的。</p>
+</article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
 </div>
@@ -282,6 +288,7 @@ nums2.length == n
 </ul>
 </li>
 <li><a href=#代码>代码</a></li>
+<li><a href=#附录>附录</a></li>
 </ul>
 </li>
 </ul>
