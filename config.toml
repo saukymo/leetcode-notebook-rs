@@ -2,6 +2,7 @@ baseURL = '//blog.mkdef.com/leetcode-notebook-rs/'
 languageCode = 'zh-hans'
 title = 'LeetCode NoteBook'
 theme = "hugo-book"
+author = "无生"
 
 # https://github.com/gohugoio/hugo/issues/7182
 relativeURLs = true
@@ -20,9 +21,19 @@ disablePathToLower = true
 
 [menu]
 [[menu.before]]
-  name = "Code"
-  url = "https://github.com/saukymo/leetcode-rs"
+  name = "序"
+  url = "https://blog.mkdef.com/leetcode-notebook-rs/"
   weight = 10
+
+[[menu.before]]
+  name = "Blog"
+  url = "https://blog.mkdef.com/"
+  weight = 20
+
+[[menu.before]]
+  name = "Github"
+  url = "https://github.com/saukymo/leetcode-rs"
+  weight = 30
 
 [params]
   # (Optional, default light) Sets color theme: light, dark or auto.
