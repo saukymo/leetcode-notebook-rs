@@ -1,0 +1,237 @@
+<!doctype html><html lang=zh-hans dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="10.Regular Expression Matching #  题目 #  Given an input string s and a pattern p, implement regular expression matching with support for &lsquo;.&rsquo; and &lsquo;*&rsquo; where:
+&lsquo;.&rsquo; Matches any single character.​​​​ &lsquo;*&rsquo; Matches zero or more of the preceding element. The matching should cover the entire input string (not partial).
+Example 1:
+Input: s = &#34;aa&#34;, p = &#34;a&#34; Output: false Explanation: &#34;a&#34; does not match the entire string &#34;aa&#34;.">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="0010.Regular Expression Matching">
+<meta property="og:description" content="10.Regular Expression Matching #  题目 #  Given an input string s and a pattern p, implement regular expression matching with support for &lsquo;.&rsquo; and &lsquo;*&rsquo; where:
+&lsquo;.&rsquo; Matches any single character.​​​​ &lsquo;*&rsquo; Matches zero or more of the preceding element. The matching should cover the entire input string (not partial).
+Example 1:
+Input: s = &#34;aa&#34;, p = &#34;a&#34; Output: false Explanation: &#34;a&#34; does not match the entire string &#34;aa&#34;.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="//blog.mkdef.com/leetcode-notebook-rs/0001~0099/0010.Regular-Expression-Matching/"><meta property="article:section" content="0001~0099">
+<title>0010.Regular Expression Matching | LeetCode NoteBook</title>
+<link rel=manifest href=../../manifest.json>
+<link rel=icon href=../../favicon.png type=image/x-icon>
+<link rel=stylesheet href=../../book.min.97cfda4f5e3c9fa49a2bf8d401f4ddc0eec576c99cdcf6afbec19173200c37db.css integrity="sha256-l8/aT148n6SaK/jUAfTdwO7Fdsmc3PavvsGRcyAMN9s=" crossorigin=anonymous>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=../../><span>LeetCode NoteBook</span>
+</a>
+</h2>
+<ul>
+<li>
+<a href=https://blog.mkdef.com/leetcode-notebook-rs/ target=_blank rel=noopener>
+序
+</a>
+</li>
+<li>
+<a href=https://blog.mkdef.com/ target=_blank rel=noopener>
+Blog
+</a>
+</li>
+<li>
+<a href=https://github.com/saukymo/leetcode-rs target=_blank rel=noopener>
+Github
+</a>
+</li>
+</ul>
+<ul>
+<li>
+<span>0001~0099s</span>
+<ul>
+<li>
+<a href=//blog.mkdef.com/leetcode-notebook-rs/0001~0099/0001.Two-Sum/>0001.Two Sum</a>
+</li>
+<li>
+<a href=//blog.mkdef.com/leetcode-notebook-rs/0001~0099/0004.Median-Of-Two-Sorted-Arrays/>0004.Median Of Two Sorted Arrays</a>
+</li>
+<li>
+<a href=//blog.mkdef.com/leetcode-notebook-rs/0001~0099/0009.Palindrome-Number/>0009.Palindrome Number</a>
+</li>
+<li>
+<a href=//blog.mkdef.com/leetcode-notebook-rs/0001~0099/0010.Regular-Expression-Matching/ class=active>0010.Regular Expression Matching</a>
+</li>
+<li>
+<a href=//blog.mkdef.com/leetcode-notebook-rs/0001~0099/0023.Merge-K-Sorted-Lists/>0023.Merge K Sorted Lists</a>
+</li>
+</ul>
+</li>
+<li>
+<span>0100~0199s</span>
+<ul>
+<li>
+<a href=//blog.mkdef.com/leetcode-notebook-rs/0100~0199/0101.Symmetric-Tree/>0101.Symmetric Tree</a>
+</li>
+</ul>
+</li>
+<li>
+<span>0200~0299s</span>
+<ul>
+<li>
+<a href=//blog.mkdef.com/leetcode-notebook-rs/0200~0299/0202.Happy-Number/>0202.Happy Number</a>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=../../svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>0010.Regular Expression Matching</strong>
+<label for=toc-control>
+<img src=../../svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#10regular-expression-matchinghttpsleetcodecomproblemsregular-expression-matchingsubmissions><a href=https://leetcode.com/problems/regular-expression-matching/submissions/>10.Regular Expression Matching</a></a>
+<ul>
+<li><a href=#题目>题目</a></li>
+<li><a href=#代码>代码</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+</header>
+<article class=markdown><h1 id=10regular-expression-matchinghttpsleetcodecomproblemsregular-expression-matchingsubmissions>
+<a href=https://leetcode.com/problems/regular-expression-matching/submissions/>10.Regular Expression Matching</a>
+<a class=anchor href=#10regular-expression-matchinghttpsleetcodecomproblemsregular-expression-matchingsubmissions>#</a>
+</h1>
+<h2 id=题目>
+题目
+<a class=anchor href=#%e9%a2%98%e7%9b%ae>#</a>
+</h2>
+<p>Given an input string s and a pattern p, implement regular expression matching with support for &lsquo;.&rsquo; and &lsquo;*&rsquo; where:</p>
+<p>&lsquo;.&rsquo; Matches any single character.​​​​
+&lsquo;*&rsquo; Matches zero or more of the preceding element.
+The matching should cover the entire input string (not partial).</p>
+<p><em>Example 1:</em></p>
+<pre tabindex=0><code>Input: s = &quot;aa&quot;, p = &quot;a&quot;
+Output: false
+Explanation: &quot;a&quot; does not match the entire string &quot;aa&quot;.
+</code></pre><p><em>Example 2:</em></p>
+<pre tabindex=0><code>Input: s = &quot;aa&quot;, p = &quot;a*&quot;
+Output: true
+Explanation: '*' means zero or more of the preceding element, 'a'. Therefore, by repeating 'a' once, it becomes &quot;aa&quot;.
+</code></pre><p><em>Example 3:</em></p>
+<pre tabindex=0><code>Input: s = &quot;ab&quot;, p = &quot;.*&quot;
+Output: true
+Explanation: &quot;.*&quot; means &quot;zero or more (*) of any character (.)&quot;.
+</code></pre><p><em>Constraints:</em></p>
+<pre tabindex=0><code>1 &lt;= s.length &lt;= 20
+1 &lt;= p.length &lt;= 30
+s contains only lowercase English letters.
+p contains only lowercase English letters, '.', and '*'.
+It is guaranteed for each appearance of the character '*', there will be a previous valid character to match.
+</code></pre><h2 id=代码>
+代码
+<a class=anchor href=#%e4%bb%a3%e7%a0%81>#</a>
+</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-Rust data-lang=Rust><span style=color:#66d9ef>impl</span> Solution {
+
+    <span style=color:#66d9ef>pub</span> <span style=color:#66d9ef>fn</span> <span style=color:#a6e22e>is_match</span>(s: String, p: String) -&gt; <span style=color:#66d9ef>bool</span> {
+        <span style=color:#66d9ef>let</span> <span style=color:#66d9ef>mut</span> f: [[<span style=color:#66d9ef>bool</span>; <span style=color:#ae81ff>32</span>]; <span style=color:#ae81ff>22</span>] <span style=color:#f92672>=</span> [[<span style=color:#66d9ef>false</span>; <span style=color:#ae81ff>32</span>]; <span style=color:#ae81ff>22</span>];
+
+        f[<span style=color:#ae81ff>0</span>][<span style=color:#ae81ff>0</span>] <span style=color:#f92672>=</span> <span style=color:#66d9ef>true</span>;
+
+        <span style=color:#66d9ef>for</span> j <span style=color:#66d9ef>in</span> <span style=color:#ae81ff>2</span><span style=color:#f92672>..</span>p.len() <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>{
+            <span style=color:#66d9ef>let</span> b <span style=color:#f92672>=</span> p.chars().nth(j <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>).unwrap();
+
+            <span style=color:#66d9ef>if</span> f[<span style=color:#ae81ff>0</span>][j <span style=color:#f92672>-</span> <span style=color:#ae81ff>2</span>] <span style=color:#f92672>&amp;&amp;</span> b <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;*&#39;</span> {
+                f[<span style=color:#ae81ff>0</span>][j] <span style=color:#f92672>=</span> <span style=color:#66d9ef>true</span>
+            }
+        }
+
+        <span style=color:#66d9ef>for</span> i <span style=color:#66d9ef>in</span> <span style=color:#ae81ff>1</span><span style=color:#f92672>..</span>s.len() <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span> {
+            <span style=color:#66d9ef>for</span> j <span style=color:#66d9ef>in</span> <span style=color:#ae81ff>1</span><span style=color:#f92672>..</span>p.len() <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span> {
+                <span style=color:#66d9ef>let</span> a <span style=color:#f92672>=</span> s.chars().nth(i <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>).unwrap();
+                <span style=color:#66d9ef>let</span> b <span style=color:#f92672>=</span> p.chars().nth(j <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>).unwrap();
+                
+
+                <span style=color:#66d9ef>if</span> f[i <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>][j <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>] <span style=color:#f92672>&amp;&amp;</span> a <span style=color:#f92672>==</span> b {
+                    f[i][j] <span style=color:#f92672>=</span> <span style=color:#66d9ef>true</span>
+                }
+
+                <span style=color:#66d9ef>if</span> i <span style=color:#f92672>!=</span> s.len() <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span> <span style=color:#f92672>&amp;&amp;</span> f[i <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>][j <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>] <span style=color:#f92672>&amp;&amp;</span> b <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;.&#39;</span> {
+                    f[i][j] <span style=color:#f92672>=</span> <span style=color:#66d9ef>true</span>
+                }
+
+                <span style=color:#66d9ef>if</span> j <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>2</span> <span style=color:#f92672>||</span> b <span style=color:#f92672>!=</span> <span style=color:#e6db74>&#39;*&#39;</span> {
+                    <span style=color:#66d9ef>continue</span>;
+                }
+
+                <span style=color:#66d9ef>let</span> c <span style=color:#f92672>=</span> p.chars().nth(j <span style=color:#f92672>-</span> <span style=color:#ae81ff>2</span>).unwrap();
+
+                <span style=color:#66d9ef>if</span> f[i <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>][j] <span style=color:#f92672>&amp;&amp;</span> a <span style=color:#f92672>==</span> c {
+                    f[i][j] <span style=color:#f92672>=</span> <span style=color:#66d9ef>true</span>
+                }
+
+                <span style=color:#66d9ef>if</span> f[i <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>][j] <span style=color:#f92672>&amp;&amp;</span> c <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;.&#39;</span> {
+                    f[i][j] <span style=color:#f92672>=</span> <span style=color:#66d9ef>true</span>
+                }
+
+                <span style=color:#66d9ef>if</span> f[i <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>][j <span style=color:#f92672>-</span> <span style=color:#ae81ff>2</span>] <span style=color:#f92672>&amp;&amp;</span> a <span style=color:#f92672>==</span> c {
+                    f[i][j] <span style=color:#f92672>=</span> <span style=color:#66d9ef>true</span>
+                }
+
+                <span style=color:#66d9ef>if</span> f[i <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>][j <span style=color:#f92672>-</span> <span style=color:#ae81ff>2</span>] <span style=color:#f92672>&amp;&amp;</span> c <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;.&#39;</span> {
+                    f[i][j] <span style=color:#f92672>=</span> <span style=color:#66d9ef>true</span>
+                }
+
+                <span style=color:#66d9ef>if</span> f[i][j <span style=color:#f92672>-</span> <span style=color:#ae81ff>2</span>] {
+                    f[i][j] <span style=color:#f92672>=</span> <span style=color:#66d9ef>true</span>
+                }
+
+            }
+        }
+
+        <span style=color:#66d9ef>return</span> f[s.len()][p.len()];
+    }
+}
+</code></pre></div></article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#10regular-expression-matchinghttpsleetcodecomproblemsregular-expression-matchingsubmissions><a href=https://leetcode.com/problems/regular-expression-matching/submissions/>10.Regular Expression Matching</a></a>
+<ul>
+<li><a href=#题目>题目</a></li>
+<li><a href=#代码>代码</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</body>
+</html>
